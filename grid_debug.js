@@ -1,28 +1,6 @@
 // grid debug utilities
 // little utility to overlay a vertical and horizontal grid over your page layout to make sure everything is lining up
 
-// Foundation Grid Debug
-// overlay columns(#) rows on top of your design
-// 'columns' should match the total number of columns your grid allows for (default 12)
-
-// there should be some cooresponding CSS somewhere that looks like this:
-//
-// DIV.grid-debug {
-//   position: fixed; width: 100%; height: 100%;  top: 0; left: 0;  z-index: 10000;
-// }
-// DIV.grid-debug DIV.row, DIV.grid-debug DIV.columns {
-//   height: 100%;
-// }
-// DIV.grid-debug DIV.columns DIV {
-//   background: #ccc; opacity: 0.2; height: 100%;
-// }
-// DIV.vertical-baseline-row {
-//   border-bottom: 1px solid #d05800; opacity: 0.4;
-// }
-// DIV.grid-debug.inverted DIV.vertical-baseline-row {
-//   border-bottom: 1px solid #fff;
-// }
-
 var GRID = {
   'defaults': {
     'columncount': 12,
@@ -36,13 +14,9 @@ var GRID = {
     'baseline-row-styles': 'border-bottom: 1px solid #d05800; opacity: 0.4; margin-bottom: -1px;',
     'inverted-baseline-row-styles': 'border-bottom: 1px solid #fff; opacity: 0.4; margin-bottom: -1px;'
   },
-  'columns': function(columncount, framework) {
-    if (typeof(columncount) == 'undefined') {
-      columncount = this.get_value('columncount');
-    }
-    if (typeof(framework) == 'undefined') {
-      framework = this.get_value('framework');
-    }
+  'columns': function() {
+    var columncount = this.get_value('columncount');
+    var framework = this.get_value('framework');
     
     if (framework == 'foundation') {
       var column_class="large-1 small-1 columns",
@@ -68,10 +42,9 @@ var GRID = {
     
     this.init_keystrokes();
   },
-  'baseline': function(baselineheight) {
-    if (typeof(baselineheight) == 'undefined') {
-      baselineheight = this.get_value('baselineheight');
-    }
+  'baseline': function() {
+    var baselineheight = this.get_value('baselineheight');
+
     jQuery('body').append('<div id="baseline-grid-debug" class="grid-debug" style="'+ this.css['div-grid-debug'] +'"></div>');
     
     var grid_container = jQuery('DIV#baseline-grid-debug');
@@ -103,7 +76,14 @@ var GRID = {
           jQuery(baseline_grid_container).css('top', (top + 1) + 'px');
         } else if (event.keyCode == 16) {
           // shift key pressed, invert baseline colors
-          jQuery(grid_container).toggleClass('inverted');
+          var baselineheight = GRID.get_value('baselineheight');
+          if (jQuery(baseline_grid_container).hasClass('inverted')) {
+            jQuery(baseline_grid_container).removeClass('inverted');
+            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['baseline-row-styles']].join(' '));
+          } else {
+            jQuery(baseline_grid_container).addClass('inverted');
+            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['inverted-baseline-row-styles']].join(' '));
+          }
         }
       }
       
