@@ -3,9 +3,11 @@ CSS-Grid-Debugger
 
 A little console utility to make building grid-based designs easier
 
-## Designing with a grid system is great. Implementing the details is hard
+## Designing with a grid system is great. Implementing the details can be hard
 
 CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).
+
+Check out the [demo page here](http://robby1066.github.io/CSS-Grid-Debugger/).
 
 ## Adding the script
 
