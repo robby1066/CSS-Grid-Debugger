@@ -28,8 +28,10 @@ There are two ways to set default values for your environment:
 
 #### Data Attributes on the script tag
 
-    <script src="grid_debug.js" data-columns=12 data-baselineheight="18px" data-framework='foundation'></script>
-    
+    <script src="path/to/grid_debug.js" data-columns=12 data-baselineheight="18px" data-framework='foundation'></script>
+
+**Note:** the data attribute detection relies on the file name ending with "grid_debug.js". If you're using a system that compiles multiple files into a single file, this won't work for you.   
+
 #### Set the config values with Javascript (in code or in the console)
 
     <script src="grid_debug.js"></script>
@@ -43,25 +45,26 @@ It's probably much easier to set these in code rather than in the console. That 
 
 #### Set the values directly from the commands in the console
 
-    GRID.columns(16)
+    GRID.columns(16);
+    GRID.baseline('1em');
 
 ## Usage
 
 As you are working on your design, you can use the following commands from the console:
 
-*GRID.baseline(grid_height)* - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I
+**GRID.baseline(grid_height)** - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I
 
-*GRID.columns(column_count)* - overlay the columns using your chosen grid framework
+**GRID.columns(column_count)** - overlay the columns using your chosen grid framework
 
-*GRID.clear()* - clear any overlays
+**GRID.clear()** - clear any overlays
 
 ### Keyboard shortcuts
 
 When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:
 
-- *up arrow* - jog the grid up by one pixel at a time
-- *down arrow* - jog the grid down by one pixel at a time
-- *shift key* - invert the colors on the grid. Useful on dark backgrounds.
+- **up arrow** - jog the grid up by one pixel at a time
+- **down arrow** - jog the grid down by one pixel at a time
+- **shift key** - invert the colors on the grid. Useful on dark backgrounds.
 
 ### More information
 
