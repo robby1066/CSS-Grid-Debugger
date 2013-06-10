@@ -33,8 +33,8 @@ var GRID = {
     'div-grid-debug': 'position: fixed; width: 100%; height: 100%;  top: 0; left: 0;  z-index: 10000;',
     'column-height': 'height: 100%;',
     'column-style': 'background: #ccc; opacity: 0.2; height: 100%;',
-    'baseline-row-styles': 'border-bottom: 1px solid #d05800; opacity: 0.4;',
-    'inverted-baseline-row-styles': 'border-bottom: 1px solid #fff; opacity: 0.4'
+    'baseline-row-styles': 'border-bottom: 1px solid #d05800; opacity: 0.4; margin-bottom: -1px;',
+    'inverted-baseline-row-styles': 'border-bottom: 1px solid #fff; opacity: 0.4; margin-bottom: -1px;'
   },
   'columns': function(columncount, framework) {
     if (typeof(columncount) == 'undefined') {
@@ -127,11 +127,3 @@ var GRID = {
     jQuery(document).unbind('keydown');
   }
 }
-
-
-
-// either function can be called from the console, or during development, called on page load like this.
-jQuery(document).ready( function() {
-  //foundation_grid_debug();
-  //baseline_grid_debug();
-} );

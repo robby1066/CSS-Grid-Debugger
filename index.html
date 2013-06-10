@@ -5,12 +5,13 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="grid_debug.js" data-framework='bootstrap'></script>
+
     
     <style>
       HEADER {
         border-bottom: 1px solid #ccc;
-        padding: 24px 0 5px;
-        margin-bottom: 24px;
+        padding: 27px 0 8px;
+        margin-bottom: 0;
         background: #eaeaea;
       }
       FOOTER {
@@ -20,36 +21,61 @@
         padding: 24px 0 36px;
       }
       SECTION {
-        margin-top: 15px;
-        padding-top: 24px;
         border-top: 1px dotted #ccc;
+        padding-top: 17px;
       }
       h2,h3,h4,h5,h6{margin:0;}
+/*      h1,h2,h3,h4,h5,h6,P,PRE,UL,LI{outline: 1px solid red;}*/
+      
+      H1 {
+        line-height: 45px;
+        margin-bottom: 18px;
+      }
       
       H2 {
-        margin-bottom: 18px;
-        line-height: 40px;
-        font-size: 36px;
-        padding-top: 2px;
+        padding-top: 1px;
+        margin-bottom: 17px;
+        line-height: 45px;
+        font-size: 32px;
       }
       H3 {
-        line-height: 32px;
+        line-height: 36px;
         margin-bottom: 18px;
       }
       H4 {
-        margin-bottom: 14px;
-        line-height: 36px;
+        padding-top: 6px;
+        line-height: 45px;
+        margin-bottom: 11px;
+        font-size: 18px;
       }
       LI {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        line-height: 27px;
       }
       P {
-        margin-bottom: 20px;
-        line-height: 20px;
+        margin-bottom: 18px;
+        line-height: 27px;
       }
       PRE {
-        padding: 14px;
-        margin: 25px 0 24px;
+        padding: 17px;
+        line-height: 27px;
+        margin: 0 0 18px;
+      }
+      UL {
+        margin: 0 0 18px 27px;
+      }
+      DIV.box {
+        padding: 18px 18px 27px;
+      }
+      DIV.box.grey {
+        background: #eee;
+      }
+      DIV.box.tan {
+        background: #fffbe2;
+      }
+      DIV#github-link {
+        text-align: center;
+        margin-top: 25px;
       }
     </style>
   </head>
@@ -57,17 +83,23 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="span12">
+          <div class="span9">
             <h1>CSS-Grid-Debugger</h1>
 
             <p>A little console utility to make building grid-based designs easier</p>
+          </div>
+          <div class="span3">
+            <div id="github-link">
+              <a href="https://github.com/robby1066/CSS-Grid-Debugger/" class="btn btn-primary">Download</a>
+            </div>
           </div>
         </div>
       </div>
     </header>
     <div class="container">
       <div class="row">
-        <div class="span8">
+        <div class="span6">
+          <div class="box">
           <h2>Designing with a grid system is great. Implementing the details is hard</h2>
 
           <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).</p>
@@ -79,8 +111,10 @@
           <pre><code>&lt;script src="/path/to/grid_debug.js"&gt;&lt;/script&gt;</code></pre>
 
           <p>You can include this anywhere in your document.</p>
+          </div>
         </div>
-        <div class="span4">
+        <div class="span3">
+          <div class="box grey">
           <h4>Setting default values</h4>
 
           <p>There are a few configuration options you can set:</p>
@@ -90,7 +124,17 @@
             <li><strong>baselineheight</strong> - A CSS-valid height for the grid. Remember to include px, %, or em units! (default value == '9px')</li>
             <li><strong>framework</strong> - Which grid framework are you using. Currently Foundation 4 and Twitter Bootstrap are supported (options = ['foundation', 'bootstrap', 'bootstrap-fluid'] default value == 'foundation')</li>
           </ul>
-          
+          </div>
+        </div>
+        
+        <div class="span3">
+          <div class="box tan">
+          <h4>Try it yourself</h4>
+          <p>Open the Javascript Console and type:</p>
+          <p><strong><a href="#" onclick="GRID.baseline(); return false;">GRID.baseline()</a></strong></p>
+          <p>Now, hit ESC.</p>
+          <p><strong><a href="#" onclick="GRID.columns(); return false;">GRID.columns()</a></strong></p>
+          </div>
         </div>
         
       </div>
