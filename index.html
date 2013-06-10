@@ -12,7 +12,14 @@
         border-bottom: 1px solid #ccc;
         padding: 27px 0 8px;
         margin-bottom: 0;
-        background: #eaeaea;
+        background: #7abcff; /* Old browsers */
+        background: -moz-linear-gradient(top, #7abcff 0%, #4096ee 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #7abcff 0%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #7abcff 0%,#4096ee 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #7abcff 0%,#4096ee 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #7abcff 0%,#4096ee 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
       }
       FOOTER {
         border-top: 1px solid #ccc;
@@ -65,17 +72,26 @@
         margin: 0 0 18px 27px;
       }
       DIV.box {
-        padding: 18px 18px 27px;
+        padding: 18px 0 27px;
       }
       DIV.box.grey {
         background: #eee;
+        padding: 18px 18px 27px;
       }
       DIV.box.tan {
         background: #fffbe2;
+        padding: 18px 18px 27px;
       }
       DIV#github-link {
         text-align: center;
-        margin-top: 25px;
+        margin-top: 9px;
+        background: #fff;
+        padding: 16px 0 18px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px #ccc;
+      }
+      SPAN.mono {
+        font-family: Courier, monospace;
       }
     </style>
   </head>
@@ -86,7 +102,7 @@
           <div class="span9">
             <h1>CSS-Grid-Debugger</h1>
 
-            <p>A little console utility to make building grid-based designs easier</p>
+            <p>A tiny little console utility to make building grid-based designs easier</p>
           </div>
           <div class="span3">
             <div id="github-link">
@@ -130,10 +146,10 @@
         <div class="span3">
           <div class="box tan">
           <h4>Try it yourself</h4>
-          <p>Open the Javascript Console and type:</p>
-          <p><strong><a href="#" onclick="GRID.baseline(); return false;">GRID.baseline()</a></strong></p>
+          <p>Fire up the Javascript Console and type:</p>
+          <p><strong><span class="mono"><a href="#" onclick="GRID.baseline(); return false;">GRID.baseline()</a></span></strong></p>
           <p>Now, hit ESC.</p>
-          <p><strong><a href="#" onclick="GRID.columns(); return false;">GRID.columns()</a></strong></p>
+          <p><strong><span class="mono"><a href="#" onclick="GRID.columns(); return false;">GRID.columns()</a></span></strong></p>
           </div>
         </div>
         
