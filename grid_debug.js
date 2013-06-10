@@ -76,13 +76,13 @@ var GRID = {
           jQuery(baseline_grid_container).css('top', (top + 1) + 'px');
         } else if (event.keyCode == 16) {
           // shift key pressed, invert baseline colors
-          var baselineheight = this.get_value('baselineheight');
+          var baselineheight = GRID.get_value('baselineheight');
           if (jQuery(baseline_grid_container).hasClass('inverted')) {
             jQuery(baseline_grid_container).removeClass('inverted');
-            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', this.css['baseline-row-styles']].join(' '));
+            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['baseline-row-styles']].join(' '));
           } else {
             jQuery(baseline_grid_container).addClass('inverted');
-            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', this.css['inverted-baseline-row-styles']].join(' '));
+            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['inverted-baseline-row-styles']].join(' '));
           }
         }
       }
