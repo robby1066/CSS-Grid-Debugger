@@ -3,21 +3,79 @@
   <head>
     <title>CSS Grid Debugger</title>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="grid_debug.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="grid_debug.js" data-framework='bootstrap'></script>
+    
+    <style>
+      HEADER {
+        border-bottom: 1px solid #ccc;
+        padding: 24px 0 5px;
+        margin-bottom: 24px;
+        background: #eaeaea;
+      }
+      FOOTER {
+        border-top: 1px solid #ccc;
+        background: #eaeaea;
+        margin-top: 16px;
+        padding: 13px 0 36px;
+      }
+      SECTION {
+        margin-top: 15px;
+        padding-top: 24px;
+        border-top: 1px dotted #ccc;
+      }
+      h2,h3,h4,h5,h6{margin:0;}
+      
+      H2 {
+        margin-bottom: 18px;
+        line-height: 40px;
+        font-size: 36px;
+        padding-top: 2px;
+      }
+      H3 {
+        line-height: 32px;
+        margin-bottom: 18px;
+      }
+      H4 {
+        margin-bottom: 14px;
+        line-height: 36px;
+      }
+      LI {
+        margin-bottom: 10px;
+      }
+      P {
+        margin-bottom: 20px;
+        line-height: 20px;
+      }
+      PRE {
+        padding: 14px;
+        margin: 25px 0 24px;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <h1>CSS-Grid-Debugger</h1>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h1>CSS-Grid-Debugger</h1>
 
-          <p>A little console utility to make building grid-based designs easier</p>
+            <p>A little console utility to make building grid-based designs easier</p>
+          </div>
         </div>
       </div>
+    </header>
+    <div class="container">
       <div class="row">
         <div class="span8">
           <h2>Designing with a grid system is great. Implementing the details is hard</h2>
 
+          <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).</p>
+          <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).</p>
+          
+          <h3>h3 test</h3>
+          <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).</p>
+          <h4>h3 test</h4>
           <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Sometimes it's a bit difficult to translate static designs to a functional HTML version. This library provides some overlays to help make sure your designs are lining up. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).</p>
 
           <h2>Adding the script</h2>
@@ -42,67 +100,74 @@
         </div>
         
       </div>
-      
-      <div class="row">
-        <div class="span12">
-          <h3>There are two ways to set default values for your environment</h3>
+      <section>
+        <div class="row">
+          <div class="span12">
+            <h3>There are two ways to set default values for your environment</h3>
+          </div>
+          <div class="span6">
+            <h4>Data Attributes on the script tag</h4>
+
+            <pre><code>&lt;script src="path/to/grid_debug.js" 
+    data-columns=12
+    data-baselineheight="18px" 
+    data-framework='foundation'&gt;&lt;/script&gt;</code></pre>
+
+            <p><strong>Note:</strong> the data attribute detection relies on the file name ending with "grid_debug.js". If you're using a system that compiles multiple files into a single file, this won't work for you.   </p>
+          </div>
+          <div class="span6">
+            <h4>Set the config values with Javascript (in code or in the console)</h4>
+
+            <pre><code>&lt;script src="grid_debug.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      GRID.defaults.columncount = 8;
+      GRID.defaults.baselineheight = '2em';
+      GRID.defaults.framework = 'bootstrap-fluid';
+    &lt;/script&gt;</code></pre>
+
+            <p>It's probably much easier to set these in code rather than in the console. That way, you won't have to enter options over and over again as you refresh the pages.</p>
+          </div>
         </div>
-        <div class="span6">
-          <h4>Data Attributes on the script tag</h4>
+      </section>
+      <section>
+        <div class="row">
+          <div class="span8">
+            <h2>Usage</h2>
 
-          <pre><code>&lt;script src="path/to/grid_debug.js" 
-  data-columns=12
-  data-baselineheight="18px" 
-  data-framework='foundation'&gt;&lt;/script&gt;</code></pre>
+            <p>As you are working on your design, you can use the following commands from the console:</p>
 
-          <p><strong>Note:</strong> the data attribute detection relies on the file name ending with "grid_debug.js". If you're using a system that compiles multiple files into a single file, this won't work for you.   </p>
-        </div>
-        <div class="span6">
-          <h4>Set the config values with Javascript (in code or in the console)</h4>
+            <p><strong>GRID.baseline(grid_height)</strong> - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I</p>
 
-          <pre><code>&lt;script src="grid_debug.js"&gt;&lt;/script&gt;
-  &lt;script&gt;
-    GRID.defaults.columncount = 8;
-    GRID.defaults.baselineheight = '2em';
-    GRID.defaults.framework = 'bootstrap-fluid';
-  &lt;/script&gt;</code></pre>
+            <p><strong>GRID.columns(column_count)</strong> - overlay the columns using your chosen grid framework</p>
 
-          <p>It's probably much easier to set these in code rather than in the console. That way, you won't have to enter options over and over again as you refresh the pages.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span8">
-          <h2>Usage</h2>
+            <p><strong>GRID.clear()</strong> - clear any overlays</p>
+          </div>
+          <div class="span4">
+            <h4>Keyboard shortcuts</h4>
 
-          <p>As you are working on your design, you can use the following commands from the console:</p>
+            <p>When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:</p>
 
-          <p><strong>GRID.baseline(grid_height)</strong> - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I</p>
-
-          <p><strong>GRID.columns(column_count)</strong> - overlay the columns using your chosen grid framework</p>
-
-          <p><strong>GRID.clear()</strong> - clear any overlays</p>
-        </div>
-        <div class="span4">
-          <h4>Keyboard shortcuts</h4>
-
-          <p>When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:</p>
-
-          <ul>
-            <li><strong>up arrow</strong> - jog the grid up by one pixel at a time</li>
-            <li><strong>down arrow</strong> - jog the grid down by one pixel at a time</li>
-            <li><strong>shift key</strong> - invert the colors on the grid. Useful on dark backgrounds.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <h3>More information</h3>
-
-          <p><a href="http://en.wikipedia.org/wiki/Grid_(graphic_design)">http://en.wikipedia.org/wiki/Grid_(graphic_design)</a></p>
-
-          <p><a href="http://www.thegridsystem.org/">http://www.thegridsystem.org/</a></p>
-        </div>
+            <ul>
+              <li><strong>up arrow</strong> - jog the grid up by one pixel at a time</li>
+              <li><strong>down arrow</strong> - jog the grid down by one pixel at a time</li>
+              <li><strong>shift key</strong> - invert the colors on the grid. Useful on dark backgrounds.</li>
+            </ul>
+          </div>
+        </section>
       </div>
     </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h3>More information</h3>
+
+            <p><a href="http://en.wikipedia.org/wiki/Grid_(graphic_design)">http://en.wikipedia.org/wiki/Grid_(graphic_design)</a></p>
+
+            <p><a href="http://www.thegridsystem.org/">http://www.thegridsystem.org/</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
