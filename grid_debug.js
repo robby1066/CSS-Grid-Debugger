@@ -10,7 +10,7 @@ var GRID = {
   'css': [
     'DIV.grid-debug { position: fixed; width: 100%; height: 100%;  top: 0; left: 0;  z-index: 10000; }',
     'DIV.grid-debug-row, DIV.grid-debug DIV.grid-debug-column, DIV.grid-debug-container { height: 100%; }',
-    'DIV.grid-debug DIV.grid-debug-column DIV { background: #ccc; opacity: 0.2; height: 100%; }',
+    'DIV.grid-debug DIV.grid-debug-column DIV { background: #ccc; opacity: 0.2; height: 100%; overflow: hidden; }',
     'DIV.vertical-baseline-row { border-bottom: 1px solid #d05800; opacity: 0.4; box-sizing:border-box; -moz-box-sizing:border-box; /* Firefox */ }',
     'DIV.grid-debug.inverted DIV.vertical-baseline-row { border-bottom: 1px solid #fff; }',
     'DIV.vertical-baseline-row:hover { opacity: 1 }'
