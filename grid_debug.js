@@ -76,8 +76,6 @@ var GRID = {
           // shift key pressed, invert baseline colors
           var baselineheight = GRID.get_value('baselineheight');
           jQuery(baseline_grid_container).toggleClass('inverted');
-        } else {
-          console.log(event.keyCode);
         }
       }
       
