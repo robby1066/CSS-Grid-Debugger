@@ -5,52 +5,51 @@ var GRID = {
   'defaults': {
     'columncount': 12,
     'baselineheight': '9px',
-    'framework': 'foundation'
+    'framework': 'foundation' // currently supported: ['foundation','bootstrap','bootstrap-fluid']
   },
-  'css': {
-    'div-grid-debug': 'position: fixed; width: 100%; height: 100%;  top: 0; left: 0;  z-index: 10000;',
-    'column-height': 'height: 100%;',
-    'column-style': 'background: #ccc; opacity: 0.2; height: 100%;',
-    'baseline-row-styles': 'border-bottom: 1px solid #d05800; opacity: 0.4; margin-bottom: -1px;',
-    'inverted-baseline-row-styles': 'border-bottom: 1px solid #fff; opacity: 0.4; margin-bottom: -1px;'
-  },
+  'css': [
+    'DIV.grid-debug { position: fixed; width: 100%; height: 100%;  top: 0; left: 0;  z-index: 10000; }',
+    'DIV.grid-debug-row, DIV.grid-debug DIV.grid-debug-column, DIV.grid-debug-container { height: 100%; }',
+    'DIV.grid-debug DIV.grid-debug-column DIV { background: #ccc; opacity: 0.2; height: 100%; }',
+    'DIV.vertical-baseline-row { border-bottom: 1px solid #d05800; opacity: 0.4; margin-bottom: -1px; }',
+    'DIV.grid-debug.inverted DIV.vertical-baseline-row { border-bottom: 1px solid #fff; }',
+    'DIV.vertical-baseline-row:hover { opacity: 1 }'
+  ],
   'columns': function() {
     var columncount = this.get_value('columncount');
-    var framework = this.get_value('framework');
     
-    if (framework == 'foundation') {
-      var column_class="large-1 small-1 columns",
-          row_class="row",
-          container_class = "";
-    } else if (framework == 'bootstrap') {
-      var column_class="span1",
-          container_class = "container",
-          row_class="row";
-    } else if (framework == 'bootstrap-fluid') {
-      var column_class="span1",
-          row_class="row-fluid",
-          container_class = "container-fluid";
+    switch(this.get_value('framework')) {
+      case 'foundation':
+        var column_class="large-1 small-1 columns", row_class="row", container_class = "";
+        break;
+      case 'bootstrap':
+        var column_class="span1", container_class = "container", row_class="row";
+        break;
+      case 'bootstrap-fluid':
+        var column_class="span1", row_class="row-fluid", container_class = "container-fluid";
+        break;
     }
     
-    jQuery('body').append('<div id="column-grid-debug" class="grid-debug" style="'+ this.css['div-grid-debug'] +'"><div class="'+ container_class +'" style="'+ this.css['column-height'] +'"><div class="'+ row_class +'" style="'+ this.css['column-height'] +'"></div></div></div>');
+    jQuery('body').append('<div id="column-grid-debug" class="grid-debug"><div class="'+ container_class +' grid-debug-container"><div class="'+ row_class +' grid-debug-row"></div></div></div>');
     
-    var grid_container = jQuery('DIV#column-grid-debug DIV.'+row_class);
+    var grid_container = jQuery('DIV#column-grid-debug DIV.grid-debug-row');
     
     for(var i=0;i<columncount;i++){
-      jQuery(grid_container).append('<div class="'+ column_class +'" style="'+ this.css['column-height'] +'"><div style="'+ [this.css['column-height'], this.css['column-style']].join(' ') +'"></div></div>');
+      jQuery(grid_container).append('<div class="'+ column_class +' grid-debug-column"><div></div></div>');
     }
-    
+    this.init_css();
     this.init_keystrokes();
   },
   'baseline': function() {
     var baselineheight = this.get_value('baselineheight');
 
-    jQuery('body').append('<div id="baseline-grid-debug" class="grid-debug" style="'+ this.css['div-grid-debug'] +'"></div>');
+    jQuery('body').append('<div id="baseline-grid-debug" class="grid-debug"></div>');
     
     var grid_container = jQuery('DIV#baseline-grid-debug');
     for(var i=0;i<150;i++){
-      jQuery(grid_container).append('<div class="vertical-baseline-row" style="'+ ['height: '+ baselineheight+';', this.css['baseline-row-styles']].join(' ') +'"></div>');
+      jQuery(grid_container).append('<div class="vertical-baseline-row" style="height: '+ baselineheight +'"></div>');
     }
+    this.init_css();
     this.init_keystrokes();
   },
   // set up some keystroke actions to deal with the grid
@@ -67,23 +66,19 @@ var GRID = {
       if (baseline_grid_container.length == 1) {
         var top = Number(jQuery(baseline_grid_container).css('top').replace('px', ''));
         
-        if (event.keyCode == 38) {
+        if (event.keyCode == 187) {
           // shift grid down
           jQuery(baseline_grid_container).css('top', (top - 1) + 'px');
-        } else if (event.keyCode == 40) {
+        } else if (event.keyCode == 189) {
           // shift grid up
           // console.log((top--) + 'px');
           jQuery(baseline_grid_container).css('top', (top + 1) + 'px');
         } else if (event.keyCode == 16) {
           // shift key pressed, invert baseline colors
           var baselineheight = GRID.get_value('baselineheight');
-          if (jQuery(baseline_grid_container).hasClass('inverted')) {
-            jQuery(baseline_grid_container).removeClass('inverted');
-            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['baseline-row-styles']].join(' '));
-          } else {
-            jQuery(baseline_grid_container).addClass('inverted');
-            jQuery(baseline_grid_container).find('DIV.vertical-baseline-row').attr('style', ['height: '+ baselineheight+';', GRID.css['inverted-baseline-row-styles']].join(' '));
-          }
+          jQuery(baseline_grid_container).toggleClass('inverted');
+        } else {
+          console.log(event.keyCode);
         }
       }
       
@@ -92,6 +87,14 @@ var GRID = {
         GRID.clear();
       }
     });
+  },
+  'init_css': function() {
+    var debug_css = jQuery('HEAD STYLE#grid-debug');
+    if (debug_css.length == 0) {
+      jQuery('HEAD').append(function() {
+        return '<style id="grid-debug">'+ GRID.css.join(' ') + '</style>';
+      })
+    }
   },
   // get a value from a data attribute with a fallback to the default value
   'get_value': function(key) {
