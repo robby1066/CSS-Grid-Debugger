@@ -5,7 +5,7 @@ A little console utility to make building grid-based designs easier
 
 ## Designing with a grid system is great. Implementing the details can be hard
 
-CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to translate complex designs to a functional HTML version. It's easy for the details to get missed, espectially when dealing with responsive designs that need to work across multiple screen sizes. This library provides some overlays to help make sure your designs are lining up to a vertical and horizontal grid. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).
+CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to get the details right when building a complex design. This is especially true when dealing with responsive designs that need to work across multiple screen sizes. This lil' library provides some overlays to help make sure your designs are lining up to a vertical and horizontal grid. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).
 
 Check out the [demo page here](http://robby1066.github.io/CSS-Grid-Debugger/).
 
@@ -34,7 +34,7 @@ There are two ways to set default values for your environment:
 
 **Note:** the data attribute detection relies on the file name ending with "grid_debug.js". If you're using a system that compiles multiple files into a single file, this won't work for you.   
 
-#### Set the config values with Javascript (in code or in the console)
+#### Set the config values with Javascript (either in code or in the console)
 
     <script src="grid_debug.js"></script>
     <script>
@@ -45,18 +45,14 @@ There are two ways to set default values for your environment:
 
 It's probably much easier to set these in code rather than in the console. That way, you won't have to enter options over and over again as you refresh the pages.
 
-#### Set the values directly from the commands in the console
-
-    GRID.columns(16);
-    GRID.baseline('1em');
 
 ## Usage
 
 As you are working on your design, you can use the following commands from the console:
 
-**GRID.baseline(grid_height)** - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I
+**GRID.baseline()** - overlay the baseline grid. You may optionally pass in a CSS-valid height for the grid (remember to include px, %, or em units). I
 
-**GRID.columns(column_count)** - overlay the columns using your chosen grid framework
+**GRID.columns()** - overlay the columns using your chosen grid framework
 
 **GRID.clear()** - clear any overlays
 
@@ -64,8 +60,8 @@ As you are working on your design, you can use the following commands from the c
 
 When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:
 
-- **up arrow** - jog the grid up by one pixel at a time
-- **down arrow** - jog the grid down by one pixel at a time
+- **+ (plus key)** - jog the grid up by one pixel at a time
+- **- (minus key)** - jog the grid down by one pixel at a time
 - **shift key** - invert the colors on the grid. Useful on dark backgrounds.
 
 ### More information
