@@ -20,7 +20,7 @@ var GRID = {
     
     switch(this.get_value('framework')) {
       case 'foundation':
-        var column_class="large-1 small-1 columns", row_class="row", container_class = "";
+        var column_class="large-1 small-1 one columns", row_class="row", container_class = "";
         break;
       case 'bootstrap':
         var column_class="span1", container_class = "container", row_class="row";
