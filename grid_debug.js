@@ -107,5 +107,12 @@ var GRID = {
   'clear': function() {
     jQuery('DIV.grid-debug').remove();
     jQuery(document).unbind('keydown');
+  },
+  'info': function() {
+    console.log("CSS GRID DEBUGGER IS LOADED:");
+    console.log("- Set config variables to match your design (see GRID.defaults)");
+    console.log("- Call GRID.baseline() to show the baseline grid");
+    console.log("- Call GRID.columns() to show the vertical grid (make sure you have the correct CSS framework defined before doing that!)");
+    console.log("- see https://github.com/robby1066/CSS-Grid-Debugger for more info");
   }
 }
