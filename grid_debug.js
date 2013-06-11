@@ -71,7 +71,6 @@ var GRID = {
           jQuery(baseline_grid_container).css('top', (top - 1) + 'px');
         } else if (event.keyCode == 189) {
           // shift grid up
-          // console.log((top--) + 'px');
           jQuery(baseline_grid_container).css('top', (top + 1) + 'px');
         } else if (event.keyCode == 16) {
           // shift key pressed, invert baseline colors
@@ -83,7 +82,7 @@ var GRID = {
       }
       
       if (event.keyCode == 27) {
-        // ESC key clears baseline
+        // ESC key clears everything
         GRID.clear();
       }
     });
