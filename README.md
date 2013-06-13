@@ -64,7 +64,9 @@ As you are working on your design, you can use the following commands from the c
 
 ### Keyboard shortcuts
 
-When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:
+When the grids are visible, you can **press ESC** to clear them. 
+
+For the baseline grids, the following keyboard commands are available:
 
 - **+ (plus key)** - jog the grid up by one pixel at a time
 - **- (minus key)** - jog the grid down by one pixel at a time
