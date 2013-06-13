@@ -5,7 +5,13 @@ A little console utility to make building grid-based designs easier
 
 ## Designing with a grid system is great. Implementing the details can be hard
 
-CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to get the details right when building a complex design. This is especially true when dealing with responsive designs that need to work across multiple screen sizes. This lil' library provides some overlays to help make sure your designs are lining up to a vertical and horizontal grid. It has support for horizontal baseline grids (default 9px baseline), and vertical grids (currently Foundation and Twitter Bootstrap supported).
+CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to get the details right when building a complex design. This is especially true when dealing with responsive designs that need to work across multiple screen sizes. This lil' library provides some overlays to help make sure your designs are lining up to a vertical and horizontal grid. 
+
+It has support for:
+
+- overlaying a horizontal baseline grid (default 9px baseline)
+- overlaying a vertical grid built with Bootstrap
+- overlaying a vertical grid built with Foundation
 
 Check out the [demo page here](http://robby1066.github.io/CSS-Grid-Debugger/).
 
