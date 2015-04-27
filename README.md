@@ -49,8 +49,7 @@ There are two ways to set default values for your environment:
       GRID.defaults.framework = 'bootstrap-fluid';
     </script>
 
-It's probably much easier to set these in code rather than in the console. That way, you won't have to enter options over and over again as you refresh the pages.
-
+It's probably much easier to set these in code rather than in the console. Otherwise, you will have to enter options over and over again as you refresh the pages.
 
 ## Usage
 
