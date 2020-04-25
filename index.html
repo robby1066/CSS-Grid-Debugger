@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8"/>
     <title>CSS Grid Debugger</title>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="grid_debug.js" data-framework='bootstrap'></script>
-
     
     <style>
       HEADER {
         border-bottom: 1px solid #ccc;
-        padding: 27px 0 8px;
+        padding: 27px 0 10px;
         margin-bottom: 0;
         background: #7abcff; /* Old browsers */
         background: -moz-linear-gradient(top, #7abcff 0%, #4096ee 100%); /* FF3.6+ */
@@ -52,7 +50,7 @@
       H4 {
         padding-top: 6px;
         line-height: 45px;
-        margin-bottom: 11px;
+        margin-bottom: 12px;
         font-size: 18px;
       }
       LI {
@@ -67,6 +65,8 @@
         padding: 17px;
         line-height: 27px;
         margin: 0 0 18px;
+        color: #eee;
+        background: #666;
       }
       UL {
         margin: 0 0 18px 27px;
@@ -99,6 +99,10 @@
       SPAN.mono {
         font-family: Courier, monospace;
       }
+
+      HEADER H1 {
+        margin-top: 16px;
+      }
     </style>
   </head>
   <body>
@@ -126,22 +130,21 @@
           <div class="box">
           <h2>Designing with a grid system is great. Implementing the details can be hard</h2>
 
-          <p>CSS frameworks like Foundation and Twitter Bootstrap (among others) make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to translate complex designs to a functional HTML version. It's easy for the details to get missed, espectially when dealing with responsive designs that need to work across multiple screen sizes.</p>
-          <p>This library provides some overlays to help make sure your designs are lining up to a vertical and horizontal grid. It has support for:</p>
+          <p>CSS Grid—or frameworks like Foundation and Bootstrap—make building layouts with a well-defined grid system easy. Even with these powerful tools, it's sometimes it's a bit difficult to translate complex grid-based designs to a functional HTML version. It's easy for the details to get missed, espectially when dealing with responsive designs that need to work across multiple screen sizes.</p>
+          <p>This script adds some overlays to help make sure your designs are lining up to a vertical and horizontal grid.</p>
           
           <ul> 
-            <li>highlighting horizontal baseline grids (default 9px baseline)</li>
-            <li>highlighting vertical grids built with <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> (including fluid grids)</li>
-            <li>highlighting vertical grids built with <a href="http://foundation.zurb.com/">Foundation</a></li>
+            <li>highlighting horizontal baseline grids</li>
+            <li>highlighting column grids</li>
           </ul>
 
           <h2>Adding the script</h2>
 
-          <p>Include the grid_debug.js script in your document. If you need to override the defaults, you can pass them using data attributes in the script tag.</p>
+          <p>Include the grid_debug.js script in your document. You probably need to override the defaults to match your design's grid system. You can do that with the <code>GRID.setBreakpoint</code> function immediately after your script include.</p>
 
           <pre><code>&lt;script src="/path/to/grid_debug.js"&gt;&lt;/script&gt;</code></pre>
 
-          <p>You can include this anywhere in your document. The only requirement is that jQuery must be available when calling any of the functions from the console.</p>
+          <p>You should include the script at the bottom of the <code>BODY</code> section of the document.</p>
           </div>
         </div>
         <div class="span3">
@@ -151,20 +154,27 @@
           <p>There are a few configuration options you can set:</p>
 
           <ul>
-            <li><strong>columncount</strong> - the number of columns your grid system uses (default value == 12)</li>
-            <li><strong>baselineheight</strong> - A CSS-valid height for the grid. Remember to include px, %, or em units! (default value == '9px')</li>
-            <li><strong>framework</strong> - Which grid framework are you using. Currently Foundation 4 and Twitter Bootstrap are supported (options = ['foundation', 'bootstrap', 'bootstrap-fluid'] default value == 'foundation')</li>
+            <li><strong>width</strong> - the width of the container box (default value is 100%)</li>
+            <li><strong>column-count</strong> - the number of columns your grid system uses (default value == 12)</li>
+            <li><strong>column-gutter</strong> - the width of the space between your columns</li>
+            <li><strong>column-margin</strong> - the width of the space on the sides of the columns relative to the container box</li>
+            <li><strong>column-color</strong> - the color of the column overlay</li>
+            
+            <li><strong>baseline-height</strong> - A CSS-valid height for the grid. Remember to include px, %, or em units! (default value == '9px')</li>
+            <li><strong>baseline-color</strong> - the color of the baseline overlay</li>
+            <li><strong>baseline-color-inverted</strong> - the color of the baseline overlay when in inverted-mode</li>
           </ul>
           </div>
         </div>
         
         <div class="span3">
           <div class="box tan">
-          <h4>Try it yourself</h4>
-          <p>Fire up the Javascript Console and type:</p>
-          <p><strong><span class="mono"><a href="#" onclick="GRID.baseline(); return false;">GRID.baseline()</a></span></strong></p>
-          <p>Now, hit ESC.</p>
-          <p><strong><span class="mono"><a href="#" onclick="GRID.columns(); return false;">GRID.columns()</a></span></strong></p>
+            <h4>Try it yourself</h4>
+            <p>Fire up the Javascript Console and type:</p>
+            <p><strong><span class="mono"><a href="#" onclick="GRID.baseline(); return false;">GRID.baseline()</a></span></strong></p>
+            <p>Now, press <code>SHIFT</code> a couple of times.</p>
+            <p><strong><span class="mono"><a href="#" onclick="GRID.columns(); return false;">GRID.columns()</a></span></strong></p>
+            <p>Now, hit ESC.</p>
           </div>
         </div>
         
@@ -172,29 +182,42 @@
       <section>
         <div class="row">
           <div class="span12">
-            <h3>There are two ways to set default values for your environment</h3>
+            <h3>Adjusting the values to match your grid system</h3>
           </div>
           <div class="span6">
-            <h4>Data Attributes on the script tag</h4>
+            <h4>Updating the defaults</h4>
 
-            <pre><code>&lt;script src="path/to/grid_debug.js" 
-    data-columns=12
-    data-baselineheight="18px" 
-    data-framework='foundation'&gt;&lt;/script&gt;</code></pre>
-
-            <p><strong>Note:</strong> the data attribute detection relies on the file name ending with "grid_debug.js". If you're using a system that compiles multiple files into a single file, this won't work for you.   </p>
+            <pre><code>  &lt;script src="grid_debug.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+  GRID.setBreakpoint('desktop', {
+    'width': '1170px',
+    'column-count': 12,
+    'column-gutter': '2.5%',
+    'column-margin': '0px',
+    'baseline-height': '9px'
+  });
+  &lt;/script&gt;</code></pre>
           </div>
           <div class="span6">
-            <h4>Set the config values with Javascript (in code or in the console)</h4>
+            <h4>Adding new breakpoints</h4>
 
-            <pre><code>&lt;script src="grid_debug.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-      GRID.defaults.columncount = 8;
-      GRID.defaults.baselineheight = '2em';
-      GRID.defaults.framework = 'bootstrap-fluid';
-    &lt;/script&gt;</code></pre>
+            <pre><code>  &lt;script src="grid_debug.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    GRID.setBreakpoint('mobile', {
+      'column-count': 4,
+      'column-gutter': '20px',
+      'column-margin': '20px',
+      'baseline-height': '9px'
+    });
 
-            <p>It's probably much easier to set these in code rather than in the console. That way, you won't have to enter options over and over again as you refresh the pages.</p>
+    // specify when to use the breakpoint 
+    // you defined with the `use` function
+    if (window.innerWidth < 999) {
+      GRID.use('mobile');
+    }
+  &lt;/script&gt;</code></pre>
+
+            <p>You can set up as many breakpoints as you need. </p>
           </div>
         </div>
       </section>
@@ -217,9 +240,9 @@
             <p>When the grids are visible, you can press ESC to clear them. For the baseline grids, the following keyboard commands are available:</p>
 
             <ul>
-              <li><strong>+ (plus key)</strong> - jog the grid up by one pixel at a time</li>
-              <li><strong>- (minus key)</strong> - jog the grid down by one pixel at a time</li>
-              <li><strong>shift key</strong> - invert the colors on the grid. Useful on dark backgrounds.</li>
+              <li><strong><code>j</code> key</strong> - jog the grid up by one pixel at a time</li>
+              <li><strong><code>k</code> key</strong> - jog the grid down by one pixel at a time</li>
+              <li><strong><code>SHIFT</code> key</strong> - invert the colors on the grid. Useful on dark backgrounds.</li>
             </ul>
           </div>
         </section>
@@ -233,12 +256,41 @@
 
             <p><a href="http://en.wikipedia.org/wiki/Grid_(graphic_design)">http://en.wikipedia.org/wiki/Grid_(graphic_design)</a></p>
 
-            <p><a href="http://www.thegridsystem.org/">http://www.thegridsystem.org/</a></p>
+            <p><a href="https://learncssgrid.com/">https://learncssgrid.com/</a></p>
             
             <p><a href="https://github.com/robby1066/CSS-Grid-Debugger">https://github.com/robby1066/CSS-Grid-Debugger</a></p>
           </div>
         </div>
       </div>
     </footer>
+
+    <script src="grid_debug.js"></script>
+    <script>
+    
+      GRID.setBreakpoint('desktop', {
+          'width': '1170px',
+          'column-count': 12,
+          'column-gutter': '2.5%',
+          'column-margin': '0px',
+          'baseline-height': '9px'
+      });
+  
+      GRID.setBreakpoint('mobile', {
+          'column-count': 4,
+          'column-gutter': '20px',
+          'column-margin': '20px',
+          'baseline-height': '9px'
+      });
+  
+      // Use mobile breakpoint when appropriate
+      if (window.innerWidth < 999) {
+          GRID.use('mobile');
+      }
+  
+      // Show the grids when the page loads.
+      GRID.columns();
+      GRID.baseline();
+    </script>
   </body>
+  
 </html>
