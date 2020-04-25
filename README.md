@@ -1,7 +1,7 @@
 CSS-Grid-Debugger
 =================
 
-A little console utility to make building grid-based designs easier
+A little developer console utility to make building grid-based designs easier
 
 **April 2020:** 
 - Rewrote the script to remove dependancies on jQuery and a css framework. 
